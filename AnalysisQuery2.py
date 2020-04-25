@@ -27,11 +27,10 @@ subResultdf2 = spark.sql("SELECT Case \
             null \
             end as day1 from dayDataResult where day is not null")
 subResultdf2.createOrReplaceTempView("subresult")
-
 resultdf = spark.sql("SELECT day1 as Day,Count(*) as DayCount from subresult \
                      where day1 is not null group by day1 order by count(*) desc")
-
 pd = resultdf.toPandas()
+pd.to_csv('Query2Result.csv', index=False)
 
 def query2_output():
     #return pd.to_json(orient='records')

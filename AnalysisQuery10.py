@@ -15,6 +15,7 @@ df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("SELECT substring(user.created_at,27,4) as Year,count(*) as UsersCount from MobileTweetsData \
                      where user.created_at is not null group by substring(user.created_at,27,4) order by count(1) desc")
 pd = resultdf.toPandas()
+pd.to_csv('Query10Result.csv', index=False)
 
 def query10_output():
     #return pd.to_json(orient='records')

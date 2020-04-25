@@ -8,15 +8,14 @@ spark = SparkSession \
     .appName("Tweets Analysis using Python Saprk") \
     .getOrCreate()
 # spark is an existing SparkSession
-#df = spark.read.json("importedtweetsdata.json")
-df = spark.read.json("tweetsfile.json")
+df = spark.read.json("importedtweetsdata.json")
 
 # Register the DataFrame as a SQL temporary view
 df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("SELECT distinct place.country as CountryName, count(*) as TweetsCount FROM MobileTweetsData \
                      where place.country is not null GROUP BY place.country ORDER BY TweetsCount DESC limit 30")
-resultdf.show()
 pd = resultdf.toPandas()
+pd.to_csv('Query1Result.csv', index=False)
 
 def query1_output():
     #return pd.to_json(orient='records')

@@ -15,6 +15,7 @@ df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("SELECT user.geo_enabled as Location, count(*)  as UsersCount \
                      from MobileTweetsData group by user.geo_enabled")
 pd = resultdf.toPandas()
+pd.to_csv('Query9Result.csv', index=False)
 
 def query9_output():
     #return pd.to_json(orient='records')

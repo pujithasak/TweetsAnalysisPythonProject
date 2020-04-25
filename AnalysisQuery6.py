@@ -22,6 +22,7 @@ resultdf = spark.sql("SELECT count(*) AS TweetsCount, 'iphone' as PhoneType FROM
                   UNION SELECT count(*) AS TweetsCount,'lenovo' as PhoneType FROM MobileTweetsData where text LIKE '%Lenovo%' \
                   order by TweetsCount desc limit 10")
 pd = resultdf.toPandas()
+pd.to_csv('Query6Result.csv', index=False)
 
 def query6_output():
     #return pd.to_json(orient='records')

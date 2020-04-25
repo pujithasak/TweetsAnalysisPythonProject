@@ -22,6 +22,7 @@ resultdf = spark.sql("SELECT  Verified, Count(Verified) as count from AccountVer
                      where id is NOT NULL and Verified is not null group by Verified order by Count DESC")
 
 pd = resultdf.toPandas()
+pd.to_csv('Query7Result.csv', index=False)
 
 def query7_output():
     #return pd.to_json(orient='records')

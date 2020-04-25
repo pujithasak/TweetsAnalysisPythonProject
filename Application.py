@@ -2,7 +2,6 @@ from flask import Flask, send_file, jsonify  # import flask
 from datetime import timedelta
 from flask import Flask, make_response, request, current_app
 from functools import update_wrapper
-# from flask_cors import CORS
 
 from AnalysisQuery1 import query1_output, query1_plot
 from AnalysisQuery10 import query10_output, query10_plot
@@ -16,14 +15,8 @@ from AnalysisQuery6 import query6_output, query6_plot
 from AnalysisQuery7 import query7_output, query7_plot
 from AnalysisQuery8 import query8_output, query8_plot
 from AnalysisQuery9 import query9_plot, query9_output
-import os.path
-from os import path
-
-from googledrive import download_file_from_google_drive
 
 app = Flask(__name__)  # create an app instance
-
-# cors = CORS(app)
 
 def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_to_all=True, automatic_options=True):
     if methods is not None:
@@ -253,8 +246,4 @@ def plot_quiry12():
 
 if __name__ == "__main__":  # on running python app.py
     app.run()  # run the flask app
-    if not path.exists("tweetsfile.json"):
-        print("file not exist..");
-        file_id = 'tweets.json'
-        destination = 'tweetsfile.json'
-        download_file_from_google_drive(file_id, destination)
+

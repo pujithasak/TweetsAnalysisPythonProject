@@ -14,6 +14,7 @@ df = spark.read.json("importedtweetsdata.json")
 df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("SELECT lang as Language, count(*) AS TweetsCount FROM MobileTweetsData WHERE lang<>'null' GROUP BY lang ORDER BY TweetsCount DESC LIMIT 10")
 pd = resultdf.toPandas()
+pd.to_csv('Query3Result.csv', index=False)
 
 def query3_output():
     #return pd.to_json(orient='records')

@@ -3,7 +3,7 @@ import os.path
 from os import path
 
 def download_file_from_google_drive(id, destination):
-    URL = "https://drive.google.com/uc?id=1rwwM1NgrYDWHabvfmanS-C2uD43I-wA7&export=download" #https://drive.google.com/file/d/1rwwM1NgrYDWHabvfmanS-C2uD43I-wA7/view
+    URL = "https://drive.google.com/uc?id=18zLIKToadExunYG1LFzcqw4MEXqMM1a3&export=download" #https://drive.google.com/file/d/1rwwM1NgrYDWHabvfmanS-C2uD43I-wA7/view
 
     session = requests.Session()
 
@@ -32,10 +32,11 @@ def save_response_content(response, destination):
                 f.write(chunk)
 
 if __name__ == "__main__":
-    if not path.exists("tweetsfile.json"):
-        print("file not exist..");
-        file_id = 'tweets.json'
-        destination = 'tweetsfile.json'
+    if not path.exists("importedtweetsdata.json"):
+        print("file not exist.. File is downloading please dont terminate the program till the success message is displayed");
+        file_id = 'importedtweetsdata.json'
+        destination = 'importedtweetsdata.json'
         download_file_from_google_drive(file_id, destination)
+        print("file download Success");
     else:
         print("file exist..");

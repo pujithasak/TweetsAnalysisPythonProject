@@ -15,6 +15,7 @@ df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("SELECT SUBSTR(retweeted_status.source, 17, 7) AS TweetSources, count(*) AS TweetsCount FROM MobileTweetsData \
                      where retweeted_status.source IS NOT null GROUP BY retweeted_status.source ORDER BY TweetsCount DESC limit 30")
 pd = resultdf.toPandas()
+pd.to_csv('Query11Result.csv', index=False)
 
 def query11_output():
     #return pd.to_json(orient='records')

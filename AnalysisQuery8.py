@@ -16,6 +16,7 @@ resultdf = spark.sql("SELECT SUBSTR(place.country, 0, 6) AS Country, SUM(user.fo
                      FROM MobileTweetsData WHERE place.country != 'null' GROUP BY place.country \
                      ORDER BY FollowersCount DESC LIMIT 10")
 pd = resultdf.toPandas()
+pd.to_csv('Query8Result.csv', index=False)
 
 def query8_output():
     #return pd.to_json(orient='records')

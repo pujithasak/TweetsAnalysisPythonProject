@@ -21,6 +21,7 @@ resultdf = spark.sql("SELECT COUNT(*) AS TweetsCount, 'macOS' as OStype \
                      UNION SELECT COUNT(*) AS TweetsCount, 'windows' as OStype \
                      FROM MobileTweetsData where text LIKE '% windows %' order by TweetsCount desc")
 pd = resultdf.toPandas()
+pd.to_csv('Query5Result.csv', index=False)
 
 def query5_output():
     #return pd.to_json(orient='records')

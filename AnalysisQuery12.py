@@ -15,6 +15,7 @@ df.createOrReplaceTempView("MobileTweetsData")
 resultdf = spark.sql("select substring(user.created_at,0,4) as NameOfWeekDay, count(*) as TweetsCount \
                      from MobileTweetsData group by substring(user.created_at,0,4)")
 pd = resultdf.toPandas()
+pd.to_csv('Query12Result.csv', index=False)
 
 def query12_output():
     #return pd.to_json(orient='records')
